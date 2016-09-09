@@ -1,0 +1,33 @@
+/* the outer for to traverse the first number,
+ * the second and third numbers to be found by two pointer from two ends.
+ * operation on pointer j after tmp_sum==0 is in order to get rid of duplication.
+ */
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(),nums.end());     
+        vector<vector<int> > result;
+        for(int i=0;i<nums.size();i++)  //traverse all the element
+        {
+            if(i>0&&nums[i]==nums[i-1])continue;
+            for(int j=i+1,k=nums.size()-1;j<k&&j<nums.size();)  // two pointers to find two other numbers
+            {
+                int tmp_sum=nums[i]+nums[j]+nums[k];
+                if(tmp_sum==0)
+                {
+                    result.push_back(vector<int>({nums[i],nums[j],nums[k]}));
+ /* another way to get rid of duplication
+  * according to https://discuss.leetcode.com/topic/57072/c-solution-46ms
+  */
+                    //int cur=nums[j];           
+                    //while(j<nums.size()&&nums[j]==cur)j++; 
+                    while(j+1<nums.size()-1&&nums[j]==nums[j+1])j++;   //avoid duplication
+                    j++;   //so important
+                }
+                else if(tmp_sum<0)j++;
+                else k--;
+            }
+        }
+        return result;
+    }
+};

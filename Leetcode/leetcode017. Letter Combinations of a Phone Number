@@ -1,0 +1,25 @@
+/* be careful about the empty digits
+ * after traversed all the elemment , erase the unuseful element.
+ */
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+       const vector<string> buf={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+       vector<string>result;
+       if(digits.size()==0)return result; //deal with empty digits.
+       result.push_back("");
+       for(int i=0;i<digits.size();i++)
+       {
+           int size=result.size();
+           for(int j=0;j<size;j++)
+           {
+               for(int k=0;k<buf[digits[i]-'0'].size();k++)
+               {
+                   result.push_back(result[j]+buf[digits[i]-'0'][k]);
+               }
+           }
+           result.erase(result.begin(),result.begin()+size);
+       }
+       return result;
+    }
+};

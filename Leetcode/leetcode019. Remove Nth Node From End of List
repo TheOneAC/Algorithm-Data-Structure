@@ -1,0 +1,41 @@
+/* Two pointer to traverse
+ * When the first pointer traverse to the nth element,
+ * begin to move the two pointer the same time untill the first pointer arrive at the end.
+ * at this time the second pointer is point to the element to be removed.
+ * Pointer pre point to the element before the element to be removed.
+ */
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* p1=head,*p2=head,*pre=NULL;//n==0 or the list is empty
+        if(n==0||head==NULL)return head;
+        for(int i=0;i<n;i++)  //move the first pointer n steps
+        {
+            if(p1==NULL)return head; //n is larger than the listlength.
+            p1=p1->next;
+        }
+        while(p1!=NULL)       // move the two pointer the same time untill the first arrive at the end
+        {
+            pre=p2;           // renew the pointer pre
+            p2=p2->next;
+            p1=p1->next;
+        }
+        if(pre==NULL)head=head->next;  //the second pointer didn`t remove, the first element is to be removed
+        else pre->next=p2->next;
+        free(p2); 
+        /* if pre==NULL, p2==head, the head element which p2 point to should be removed;
+         * if pre!=NULL, p2 point to the element which should be removed;
+         * so p2 is always point to the element is to be removed.:joy::joy:
+         */
+        return head;
+    }
+};

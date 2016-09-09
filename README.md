@@ -1,5 +1,8 @@
-# Algorithm-Data-Structure
-Learn By Doing
-Common Algorithm
-OJ/Leetcode/PAT
+## Algorithm and DataStructure
+- Learn By Doing
+- Algorithm
+  - CLRS
+- OJ
+   - Leetcode
+   - PAT
 

@@ -1,0 +1,42 @@
+/* solution one:
+ *
+ *
+ */
+class Solution {
+public:
+    string common(string& a,string& b)
+    {
+        int i;
+        for(i=0;i<a.size()&&i<b.size();i++)if(a[i]!=b[i])break;
+        return a.substr(0,i);
+    }
+    string longestCommonPrefix(vector<string>& strs) {
+        if(strs.size()==0)return string();
+        string lcp=strs[0];
+        for(vector<string>::iterator it=strs.begin();it!=strs.end();it++)
+        {
+            lcp=common(lcp,*it);
+        }
+        return lcp;
+    }
+};
+/* solution two:
+ *
+ *
+ */
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        if(strs.size()==0)return string();
+        string lcp=strs[0];
+        for(int i=0;i<lcp.size();i++)
+        {
+            for(int j=0;j<strs.size();j++)
+            {
+                if(lcp[i]!=strs[j][i])return lcp.substr(0,i);
+            }
+        }
+        return lcp;
+    }
+};
+
