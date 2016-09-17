@@ -1,5 +1,3 @@
-### Letcode 003: Longest Substring Without Repeating Characters
-```
 /* basic traverse the string 
  * set to predict there is no repeat char in the substring
  *
@@ -24,10 +22,9 @@ public:
         return max;
     }
 };
-```
-----------------------------------
-**learn from ![ACM home](http://www.acmerblog.com/leetcode-solution-longest-substring-without-repeating-characters-6307.html)
-```
+/**
+ * learn from ![ACM home](http://www.acmerblog.com/leetcode-solution-longest-substring-without-repeating-characters-6307.html)
+ */
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -48,4 +45,3 @@ public:
         return max((int)s.size() - start, maxsub);
     }
 };
-```

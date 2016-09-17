@@ -1,0 +1,20 @@
+/**
+ * hashmap implemented by map
+ * the elegant way to use 'auto' to simplify the code.
+ * the complexity is little large, which may be improved.
+ */ 
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        map<string,vector<string>>hashmap;
+        for(auto s : strs)   //traverse and group by sorted string.
+        {
+            auto tmp=s;
+            sort(s.begin(),s.end());
+            hashmap[s].push_back(tmp);
+        }
+        vector<vector<string>>re;    //load in result.
+        for(auto n : hashmap)re.push_back(n.second);
+        return re;
+    }
+};

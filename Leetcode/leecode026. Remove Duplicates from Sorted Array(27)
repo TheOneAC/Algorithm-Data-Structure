@@ -1,0 +1,33 @@
+/**26
+ * erase`s parameter is iterator, 
+ * if the current erased, this iterator will be point to next element naturely.
+ * 
+ */
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        for(vector<int>::iterator it=nums.begin();it!=nums.end();)
+        {
+            int cur=*it;
+            it++;					//the same with cur then erase
+            while(it != nums.end() && *it == cur)nums.erase(it);  
+        }
+        return nums.size();
+    }
+};
+
+/**027
+ *
+ */
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        for(vector<int>::iterator it=nums.begin();it!=nums.end();)
+        {
+            if(*it == val)nums.erase(it);
+            else it++;
+        }
+        return nums.size();
+    }
+};
