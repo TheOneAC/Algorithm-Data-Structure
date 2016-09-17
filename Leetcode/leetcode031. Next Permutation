@@ -1,0 +1,26 @@
+/**
+ * next_permutation in STL: 
+ * step one :from end to start find to adjacent elememt which are ascend
+ * step two :from end to start fine the first element larger than the little element up
+ * step three : swap the larger and the litte between the first two element.
+ * step four :reverse the element from the next of the little to last.
+ *
+ * character: 
+ * all the element after A[i] is descendent, 
+ * the reverse will make it the smallest-dictionary-order  
+ * the upper_bound will find the first which is larger than A[i], the same as step two because of the descendent order
+ */
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        if(nums.size()<=1)return ;
+        int i;
+        for(i=nums.size()-2;i>=0;i--)   //find two elements A[i]<A[i+1]
+            if(nums[i]<nums[i+1])break;
+        reverse(begin(nums)+i+1,end(nums));   //reverse i+1 ~ end
+        if(i==-1) return; 
+        auto itr = upper_bound(begin(nums)+i+1, end(nums), nums[i]);  //find A[j]>A[i]
+        swap(nums[i], *itr);  //swap
+        return ;
+    }
+};

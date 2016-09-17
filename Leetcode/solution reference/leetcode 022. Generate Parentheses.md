@@ -39,6 +39,7 @@ public:
 ```
 M Mein-Fuhrer 
 Reputation:  3
+
  class Solution {
  public:
 vector<string> generateParenthesis(int n) {
