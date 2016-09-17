@@ -1,0 +1,29 @@
+/**
+ * 诡谲的翻转方式，宝宝想哭
+ */
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        if(matrix.size()==0)return ;
+        int size=matrix.size();
+        for(int i=0;i<size/2;i++)   //upside down
+        {
+            for(int j=0;j<size;j++)
+            {
+                int tmp=matrix[i][j];
+                matrix[i][j]=matrix[size-1-i][j];
+                matrix[size-1-i][j]=tmp;
+            }
+        }
+        for(int i=0;i<size;i++)  // reverse according to the diagonal line
+        {
+            for(int j=i;j<size;j++)
+            {
+                int tmp=matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=tmp;
+            }
+        }
+        return ;
+    }
+};
