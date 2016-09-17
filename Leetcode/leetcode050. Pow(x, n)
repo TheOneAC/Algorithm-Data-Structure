@@ -1,0 +1,14 @@
+/**
+ * be careful about T_MIN
+ * divide and conquer
+ */
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if (n == 0) return 1;
+        if (n == 1) return x;
+        if (n < 0) return ( (1/x) * myPow(1/x, -(n+1)) );   //deal with n<0, especially for T_MIN, which -n is overflow.
+        double tmp = myPow(x*x, n/2);
+        return  (n % 2==0)? tmp : (tmp * x);
+    }
+};

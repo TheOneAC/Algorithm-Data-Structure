@@ -1,0 +1,30 @@
+/* improvement on dealing  with overflow accroding to this:
+ * https://discuss.leetcode.com/topic/57452/c-solution-beats-100
+ * 
+ * be careful about the INT_MAX and INT_MIN 
+ * this atoi is not thinking about special char like dot and so on.
+ */
+
+class Solution {
+public:
+    int myAtoi(string str) {
+       int i,nega_sign=1;
+       long long int re=0;  //long long re to avoid overflow 
+       for(i=0;i<str.size();i++)       //skip to all the blank in the front of the string
+       {
+           if(str[i]!=' ')break;
+       }
+       if(str[i]=='+')i++;             // deal with signature
+       else if(str[i]=='-'){ nega_sign=-1;i++;}
+       while(i<str.size()&&isdigit(str[i]))  
+/*when the string is over or the current char is not a valid integral number,no more conversion will be performed.
+*/
+       {
+               re=re*10+str[i]-'0';
+               if(nega_sign==-1&& -1*re<=INT_MIN)return INT_MIN;      //overflow
+               else if (nega_sign==1&&re>=INT_MAX)return INT_MAX;
+               i++;
+       }
+       return re*nega_sign;
+    }
+};

@@ -1,0 +1,24 @@
+/**
+ * why I cann`t thik out a simple way like this? cring.....
+ * two pointer to traverse ,update the maxcontainer.
+ */
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+       int maxl=0;  //maxcontainer
+	int curl=0; //current container
+	int h;      // current height of water
+       for(int i=0,j=height.size()-1;i<j;)
+       {
+           if(height[i]<height[j]){   
+               curl=(j-i)*height[i];
+               i++;
+           }else {
+               curl=(j-i)*height[j];
+               j--;
+           }
+           maxl=max(maxl,curl);    //update the maxcontainer.
+       }
+       return maxl;
+    }
+};

@@ -1,0 +1,17 @@
+/* easy
+ * long long int aims at avoiding overflow
+ */
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0)return false;
+        long long int x_tmp=x,x_reverse=0;
+        while(x!=0)                       //reverse
+        {
+            x_reverse=x_reverse*10+x%10;
+            x/=10;
+        }
+        if(x_tmp==x_reverse)return true;  //compare
+        else return false;
+    }
+};
