@@ -1,0 +1,17 @@
+/**
+ * O(n)
+ * find in STL :average binary search O(lgn)
+ */
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int pivot;
+        for(pivot=0;pivot<nums.size()-1;pivot++)  //find pivot
+            if(nums[pivot]>nums[pivot+1])break;
+        auto p = find(nums.begin(),nums.begin()+pivot+1,target);  //find in the first part
+        if(p != nums.begin()+pivot+1)return p-nums.begin();
+        p = find(nums.begin()+pivot+1,nums.end(),target);   //find in the second part
+        if(p != nums.end())return p-nums.begin();
+        return -1;
+    }
+};

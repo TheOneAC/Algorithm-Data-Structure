@@ -1,0 +1,64 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+/**
+ * change the tree
+ */
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        stack<TreeNode*>st;
+        vector<int>re;
+        if(root == NULL)return re;
+        st.push(root);
+        
+        while(!st.empty())
+        {
+            TreeNode* top = st.top();
+            if(top->left != NULL)
+            {
+		st.push(top->left);
+		top->left = NULL;    // top->left = NULL :next will skip over left, so important
+	    }
+            else {
+                re.push_back(top->val);
+                st.pop();
+                if(top->right != NULL)st.push(top->right);
+            }
+            
+        }
+        return re;
+    }
+};
+/**
+ * not change tree
+ * learn from https://discuss.leetcode.com/topic/3288/three-methods-to-solve-c/2
+ */
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        stack<TreeNode*>st;
+        vector<int>re;
+        TreeNode * p = root;
+        while(!st.empty()|| p != NULL){
+            if(p != NULL)
+            {
+                st.push(p);
+                p = p->left;
+            }
+            else{
+                TreeNode* top = st.top();
+                re.push_back(top->val);
+                st.pop();
+                p = top-> right;
+            }
+        }
+        return re;
+    }
+};
