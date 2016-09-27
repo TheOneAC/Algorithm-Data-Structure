@@ -1,0 +1,23 @@
+/**
+ * level reaverse : right first
+ * each level begin, push the first element to re
+ * what about look from left-up, right up, up????
+ */
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        list<TreeNode*>li;
+        vector<int>re;
+        if(root != NULL)li.push_back(root);
+        while(!li.empty()){
+            int size = li.size();
+            re.push_back(li.front() -> val);
+            while(size  > 0){
+                TreeNode* t = li.front();li.pop_front();size--;
+                if(t -> right != NULL )li.push_back(t -> right);
+                if(t -> left != NULL )li.push_back(t -> left);
+            }
+        }
+        return re;
+    }
+};
