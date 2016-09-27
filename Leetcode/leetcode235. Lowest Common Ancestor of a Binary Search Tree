@@ -1,0 +1,19 @@
+/*
+ * learn from http://bookshadow.com/weblog/2015/07/13/leetcode-lowest-common-ancestor-binary-tree/
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root || root == p || root == q) return root;
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        return !left ? right : !right ? left : root;
+}
+};
+/*
+ * learn from https://discuss.leetcode.com/topic/18387/3-lines-with-o-1-space-1-liners-alternatives
+ */
+ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    return (root.val - p.val) * (root.val - q.val) < 1 ? root :
+           lowestCommonAncestor(p.val < root.val ? root.left : root.right, p, q);
+}

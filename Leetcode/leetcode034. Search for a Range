@@ -1,0 +1,67 @@
+/*
+ * amazing library STL algorithm.
+ * the first time submit doesn`t think about the target not existing in range
+ */
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int>re{-1,-1};
+        if(!binary_search(nums.begin(),nums.end(),target))return re;  //exist or not
+        re.clear();
+        auto low=lower_bound(nums.begin(),nums.end(),target);     
+        re.push_back(low-nums.begin());
+        auto up=upper_bound(nums.begin(),nums.end(),target);
+        re.push_back(up-nums.begin()-1);
+        return re;
+    }
+};
+/**
+ *
+ */
+class Solution {
+public:
+      vector<int> searchRange(vector<int>& nums, int target) {
+          vector<int>re(2,-1);
+          int low = 0, high = nums.size()-1;
+          while(low <= high){                 // find the first element equal to target or the position it should be when it not exists
+              int  mid =low + (high - low)/2;
+              if(nums[mid] < target)low = mid + 1;
+              else high = mid - 1;
+          }
+          if(nums[low] != target)return re;   //not find
+          re[0]=low; high = nums.size()-1;
+          while(low <= high){         //find the index of the element which is larger than target
+              int  mid =low + (high - low)/2;
+              if(nums[mid] > target)high = mid - 1 ;
+              else low=mid +1 ;
+          }
+          re[1]=low -1;     // low is the upped_bound of target
+          return re;
+    }
+};
+/** 
+ * Clean iterative learn from https://discuss.leetcode.com/topic/5891/clean-iterative-solution-with-two-binary-searches-with-explanation
+ * 
+ */
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> ret(2, -1);
+	int i,j;
+        for (i = 0, j = nums.size()-1; i < j;){    // Search for the left one
+            int mid = (i + j) /2;
+            if (nums[mid] < target) i = mid + 1;
+            else j = mid;
+        }
+        if (nums[i] != target) return ret;
+        ret[0] = i;
+        for (j = nums.size() - 1; i < j;)//Search for the right one in nums[i] ~ nums[end-1]
+        {
+           int mid = (i + j) /2 + 1;	// Make mid biased to the right
+           if (nums[mid] > target) j = mid - 1;  
+           else i = mid;		// So that this won't make the search range stuck.
+        }
+        ret[1] = j;
+        return ret; 
+        }
+};

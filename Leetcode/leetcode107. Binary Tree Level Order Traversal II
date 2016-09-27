@@ -1,0 +1,25 @@
+/*
+ * preinsert in result of 102 
+ * bad time complexity in vector`s insert operation
+ * but it not time limits out
+ * am I cheating.......
+ */
+class Solution {
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode* root) {
+        list<TreeNode*>li;
+        vector<vector<int> >re;
+        if(root != NULL)li.push_back(root);
+        while(!li.empty()){
+            int size = li.size();
+            vector<int> vi;
+            while(size  > 0){
+                TreeNode* t = li.front();li.pop_front();vi.push_back(t -> val);size--;
+                if(t -> left != NULL )li.push_back(t -> left);
+                if(t -> right != NULL )li.push_back(t -> right);
+            }
+            re.insert(re.begin(),vi);  // preinsert
+        }
+        return re;
+    }
+};

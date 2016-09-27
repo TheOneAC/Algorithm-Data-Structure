@@ -1,0 +1,27 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int maxsubsum(TreeNode* root,int &maxsum){
+        if(root == NULL)return 0;
+        int left = maxsubsum(root ->left,maxsum);
+        int right =  maxsubsum(root ->right,maxsum);
+        if(left < 0)left = 0;  // subtree maxsum<0 cut
+        if(right < 0)right = 0; // subtree maxsum<0 cut;
+        if(left + right + root -> val > maxsum)maxsum = left + right + root -> val;
+        return left > right ? left +root ->val:right + root ->val;  
+        //return single branch maxsum 
+    }
+    int maxPathSum(TreeNode* root) {
+        int maxsum = INT_MIN;
+        maxsubsum(root,maxsum);
+        return maxsum;
+    }
+};

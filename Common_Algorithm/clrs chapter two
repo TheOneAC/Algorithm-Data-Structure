@@ -1,0 +1,49 @@
+- 2.1-2*
+```
+INSERT-SORT(A)  //pesuocode index from 1 defaultly
+   for j=2 to length[A]
+	do key = A[j]
+        i =j - 1
+	while i > 0  and A[i] < key
+	   do A[i+1] =A[i]
+	      i--;
+	A[i+1]=key
+```
+- 2.1-3*
+```
+linear-search(A,v) 
+	for i = 1 to length[A]       //A[0,0] not include v
+		if A[i] == v return i    //A[0,i-1] not include v, A[0,i]  include v
+	return NLL                   //if v in A return index A[i]==v, else return NLL.
+```
+- 2.2-2*
+```
+select-sort(A)
+	for i = 1 to length(A)-1
+		min=A[i],min_index=i;
+		for j = i to length(A)
+			if(min > A[j]) do min = A[j],min_index=j
+		swap(A[i],A[min_index])
+the best and worst complexity is all the theta(n^2).
+after n-1 selection the remain is the the biggest element, so there is no necessary to the n-th selection 
+```
+- 2.3-5
+``
+calling binary-search to find the position to insert in insert-sort will not decrease the comlexity from theta(n^2) to (nlgn),
+because of the insertion having to move O(n) elements all so.
+``
+- 2.3-6
+```
+two_sum_equal_x (A,x)
+	sort(A)   //O(nlgn)
+	for i=1,j=length(A); i<j;   //O(n)
+		if(A[i] + A[j] < x)i++
+		else if(A[i] + A[j] > x)j--
+		else return true
+	return false
+```
+- 2-4.d
+``
+compute the number of inversion pair :
+in the merge sort ,when A[i]>B[j] the current inversion pair number is length(A)-i+1 [index start from 1]
+``
