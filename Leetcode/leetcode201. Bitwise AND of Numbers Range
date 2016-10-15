@@ -1,0 +1,16 @@
+/* improved from 
+ *https://discuss.leetcode.com/topic/12133/bit-operation-solution-java
+ */
+class Solution {
+public:
+    int rangeBitwiseAnd(int m, int n) {   // the longest common-pre 
+        if(m == 0)return 0;
+        int cnt =0;
+        while ( m!=n){
+            m >>=1;
+            n >>=1;
+            cnt ++;
+        }
+        return m << cnt;
+    }
+};
