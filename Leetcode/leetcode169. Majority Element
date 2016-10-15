@@ -1,0 +1,21 @@
+/*
+ *  main element must apperance more than half times.
+ */
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        if(nums.size() == 0)return 0;
+        int index = 0, cnt = 1;
+        for(int i = 1 ; i < nums.size(); i++){
+            if(nums[i] == nums[index])cnt++;
+            else if(--cnt < 1){
+                index = i;cnt = 1;
+            }
+        }
+        cnt = 0;
+        for(int i = 0; i < nums.size(); i++){// excludde the main element apperance in half times
+            if(nums[i] == nums[index])cnt++;
+        }
+        return cnt > nums.size()/2 ? nums[index] : 0;
+    }
+};

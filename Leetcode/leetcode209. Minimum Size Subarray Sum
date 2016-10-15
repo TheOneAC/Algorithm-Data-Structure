@@ -1,0 +1,26 @@
+/*
+ * when min < nums.size() then return min
+ * when min == nums.size() there are two suitations
+ * 1. the sum of all the element in the nums is >= s
+ * 2. there is no subsum >= s
+ *
+ */
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int min=nums.size(),start=0,end =0,sum = 0;
+        if(nums.size() ==0)return min;
+        while(end< nums.size()){
+            sum += nums[end++];
+            while(start < end && sum >= s){
+                if(end -start < min)min = end-start;
+                sum -= nums[start++];
+            }
+        }
+        if(min < nums.size())return min;
+        for(end = 0,sum = 0;end< nums.size();end++)
+            sum +=nums[end];
+        if(sum >= s)return nums.size();
+        else return 0;
+    }
+};

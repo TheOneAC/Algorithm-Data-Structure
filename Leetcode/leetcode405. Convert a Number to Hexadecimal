@@ -1,0 +1,19 @@
+//easy
+class Solution {
+public:
+    char map[16] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'} ;  
+    // numbet map into character
+    string toHex(int num) {
+        unsigned int tmp = num;
+        int i;
+        string res, hex; 
+        for(i = 0; i< 8;i++){    // transfer into hex(reversed into hex)
+            hex += map[(int)(tmp & 0xf)];
+            tmp >>= 4;
+        }
+        for(i = hex.size()-1; i>=0 && hex[i] == '0';i--); // elimiate pre zeros  
+        if(i == -1)res +='0';
+        while(i>=0)res +=hex[i--]; // reverse into res
+        return res;
+    }
+};
