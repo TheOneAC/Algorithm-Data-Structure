@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1481331964 source:c:\users\public\documents\redblack\main.cpp
+	"rbtree.h"
+
+1481333824 c:\users\public\documents\redblack\rbtree.h
+	<iostream>
+	<fstream>
+	<iomanip>
+
+1481171959 c:\users\public\documents\redblack\rbtree.c
+	"rbtree.h"
+
+1481258611 c:\users\public\documents\redblack\rbtreeh.cpp
+	"rbtree.h"
+
+1481349527 source:c:\users\administrator\desktop\算法实验\code\4redblack\main.cpp
+	"rbtree.h"
+
+1481510840 c:\users\administrator\desktop\算法实验\code\4redblack\rbtree.h
+	<iostream>
+	<fstream>
+	<iomanip>
+

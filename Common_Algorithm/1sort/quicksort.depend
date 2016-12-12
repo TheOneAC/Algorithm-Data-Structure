@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1479631752 source:c:\users\public\documents\quicksort\main.cpp
+	<iostream>
+	<vector>
+	<ctime>
+	<cstdlib>
+	<fstream>
+	<random>
+	<algorithm>
+
+1479633397 source:c:\users\public\documents\quicksort\int_random.cpp
+	<iostream>
+	<cstdlib>
+	<fstream>
+
+1479740980 source:c:\users\public\documents\sort\main.cpp
+	<iostream>
+	<vector>
+	<ctime>
+	<cstdlib>
+	<fstream>
+	<random>
+	<algorithm>
+
+1481505522 source:c:\users\administrator\desktop\À„∑® µ—È\code\1sort\main.cpp
+	<iostream>
+	<vector>
+	<ctime>
+	<cstdlib>
+	<fstream>
+	<random>
+	<algorithm>
+

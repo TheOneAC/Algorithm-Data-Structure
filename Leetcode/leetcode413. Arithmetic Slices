@@ -1,0 +1,41 @@
+// DP
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& A) {
+        int size = A.size();
+        // size< 3 no slice
+        if(size < 3)return 0;
+        int* slice = new int[size]();
+        //memory dp
+        // cur slice start_index and cur_slice_distance
+        int cur_start = 0, distance= A[1]- A[0];
+        for(int i =2;i<size;i++){
+            if(A[i]-A[i-1] == distance){
+                slice[i]=i-cur_start-1;
+            }
+            else{
+            	// update cur_start an distance;
+                cur_start = i-1;
+                distance = A[i]-A[i-1];
+            }
+        }
+        return accumulate(slice,slice+size,0);
+    }
+};
+// learn from https://discuss.leetcode.com/topic/62992/3ms-c-standard-dp-solution-with-very-detailed-explanation
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& A) {
+         int n = A.size();
+        if (n < 3) return 0;
+        vector<int> dp(n, 0); // dp[i] means the number of arithmetic slices ending with A[i]
+        if (A[2]-A[1] == A[1]-A[0]) dp[2] = 1; // if the first three numbers are arithmetic or not
+        int result = dp[2];
+        for (int i = 3; i < n; ++i) {
+            if (A[i]-A[i-1] == A[i-1]-A[i-2]) 
+                dp[i] = dp[i-1] + 1;
+            result += dp[i]; // accumulate all valid slices
+        }
+        return result;
+    }
+};
