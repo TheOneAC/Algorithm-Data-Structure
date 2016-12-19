@@ -1,0 +1,17 @@
+//Ac the first try
+class Solution {
+public:
+    int integerBreak(int n) {
+       int dp[n+1];
+       memset(dp,0,sizeof(dp));
+       int part1,part2;
+       for(int i = 2;i<=n;i++){
+           for(int j =1;j<i;j++){
+               part1 = j>dp[j]?j:dp[j];
+               part2 = (i-j)>dp[i-j]?(i-j):dp[i-j];
+               if(part1*part2>dp[i])dp[i] =part1*part2;
+           }
+       }
+       return dp[n];
+    }
+};

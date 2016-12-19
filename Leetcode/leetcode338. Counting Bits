@@ -1,0 +1,12 @@
+//learn from https://discuss.leetcode.com/topic/40162/three-line-java-solution
+class Solution {
+public:
+    vector<int> countBits(int num) {
+        vector<int >re;
+        re.push_back(0);
+        for(int i=1;i<=num;i++){
+            re.push_back((i&1) + re[i>>1]);
+        }
+        return re;
+    }
+};
