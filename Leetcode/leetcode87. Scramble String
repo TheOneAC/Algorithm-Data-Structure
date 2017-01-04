@@ -1,0 +1,23 @@
+// learn from https://discuss.leetcode.com/topic/20094/my-c-solutions-recursion-with-cache-dp-recursion-with-cache-and-pruning-with-explanation-4ms
+
+class Solution {
+public:
+    bool isScramble(string s1, string s2) {
+        if(s1 == s2)return true;
+        vector<int>tag(26,0);
+        int len = s1.length();
+        for(int i = 0; i<len;i++){
+            tag[s1[i]-'a']++;
+            tag[s2[i]-'a']--;
+        }
+        for(auto i:tag)if(i != 0)return false;
+        for(int i=1; i<=len-1; i++)
+        {
+            if( isScramble(s1.substr(0,i), s2.substr(0,i)) && isScramble(s1.substr(i), s2.substr(i)))
+                return true;
+            if( isScramble(s1.substr(0,i), s2.substr(len-i)) && isScramble(s1.substr(i), s2.substr(0,len-i)))
+                return true;
+        }
+        return false;
+    }
+};

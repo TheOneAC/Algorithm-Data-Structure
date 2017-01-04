@@ -1,0 +1,9 @@
+// learn from discuss
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+       auto sf = s.begin();
+       for(auto c : t)sf += (*sf == c);
+       return sf == s.end();
+    }
+};
