@@ -1,0 +1,48 @@
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string>ans;
+        int len = 0, b, m;
+        int i,j;
+        bool flag = false;
+       
+        for(i = 0; i < words.size(); i=j){
+            len = words[i].size();
+            for(j = i+1; len + words[j].size()+j - i -1 < maxWidth && j < words.size(); j++){
+               len += words[j].size();
+            }
+            string tmp = words[i];
+            if(j - i == 1){
+                while( tmp.size() < maxWidth)tmp += ' ';
+                ans.push_back(tmp);
+                continue;
+                
+            }
+            b = maxWidth-len;
+            m = b%(j-i-1);
+            b = b/(j -i-1);
+            string blank;
+            stringstream is;
+            is << words[i];
+            for(int n = 0; n < b; n++)blank += ' ';
+            if(j == words.size())flag = true;
+            for(int k = i+1; k < j; k++){
+                
+                if(flag){
+                   is << ' ';
+                }else{
+                   is << blank;
+                    if(m){
+                        is<< ' ';
+                        m--;
+                    }
+                }
+                is << words[k];
+            }
+            tmp  = is.str();
+            if(flag)while(tmp.size() < maxWidth)tmp += ' ';
+            ans.push_back(tmp);
+        }
+        return ans;
+    }
+};
